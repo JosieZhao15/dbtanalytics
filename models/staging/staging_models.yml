@@ -1,0 +1,44 @@
+version: 2
+
+models:
+    - name: stg_users
+      description: "Contains information about provisioned users on Harvey, including metadata like user ID, role, etc"
+      columns:
+          - name: id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: created
+            tests:
+                - not_null
+          - name: title
+
+    - name: stg_events
+      description: "Logs each query submitted by users. Includes event type, timestamp, number of documents and feedback score."
+      columns:
+          - name: id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: created
+            tests:
+                - not_null
+          - name: firm_id
+          - name: user_id
+          - name: event_type
+          - name: num_docs
+          - name: feedback_score
+    
+    - name: stg_firms
+      description: "Metadata about each firm using Harvey (e.g., name, join date, firm size, and ARR)"
+      columns:
+          - name: id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: created
+          - name: firm_size
+          - name: arr_in_thousands

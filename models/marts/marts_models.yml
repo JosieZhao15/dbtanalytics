@@ -1,0 +1,23 @@
+version: 2
+
+models:
+    - name: dim_user_engagement
+      description: "One row per user per month, including usage metrics (e.g., query counts, last active date, query types, engagement level, etc.). Use this model to evaluate user behavior over time."
+      columns:
+          - name: id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: query_month
+            tests:
+                - not_null
+
+    - name: dim_firm_usage_summary
+      description: "A firm-level aggregate model combining firm metadata with usage and user metrics (e.g., active users, total queries, ARR). Useful for assessing firm-level health and segmentation."
+      columns:
+          - name: id
+            description: "The primary key for this table"
+            tests:
+              - unique
+              - not_null

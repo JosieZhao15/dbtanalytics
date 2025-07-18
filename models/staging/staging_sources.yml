@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: staging_models
+    database: bigquery_project_name
+    schema: bigquery_dataset_name
+    tables:
+      - name: users
+      - name: firms
+      - name: events
