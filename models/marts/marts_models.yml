@@ -21,3 +21,11 @@ models:
             tests:
               - unique
               - not_null
+    - name: fct_daily_event_summary
+      description: "One row per date, showing daily query event activities, such as daily active users, firms, average feedback score, etc. Even if a date had no event activities, the data would still show that date just with no activities."
+      columns:
+        - name: query_date
+          description: "The primary key for this table"
+          tests:
+            - unique
+            - not_null
