@@ -28,3 +28,28 @@ Assumption Three
 - If the list of event types is likely to expand over time, a more scalable approach would be to use the PIVOT operator
 
 ### How to interpret the models
+
+Staging Models 
+- all three staging models are for the purpose of pulling in the data from the source, and for minimum transfrmations
+- the purpose is to use the staging models as the atomic building blocks
+
+Intermediate Models
+- in this project, there are not enough extra logics to be built as int models, so I skipped this folder
+
+Marts
+- These models should be used by data consumers in Looker or other BI tools. They are ready to be queried for insights
+- dim_user_engagement.sqlx
+    - Granularity: One row per user_id per query_month
+    - Purpose: Understand how individual users interact with the platform over time
+    - Interpretation: Use cases can be for defining power users (e.g., users with high query event volume, high feedback scores, high documents count, etc), monthly active user
+      tracking, analyzing if high-ARR firms are driving user-level usage
+- dim_firm_usage_summary.sql
+    - Granularity: One row per firm_id
+    - Purpose: Summarize platform usage and engagement at the firm level.
+    - Interpretation: Use cases can be for Firm segmentation for CS/sales (e.g., low-usage high-ARR firms), identifying cross-sell or re-engagement opportunities,
+      analyzing product-market fit by firm size or ARR tier, investigating if large firms have lower engagement per user
+- fct_daily_event_summary.sql
+    - Granularity: One row per day, whether there is activity or not
+    - Purpose: Time series view of platform-wide activity and health
+    - Interpretation: Use cases can be for tracking day-to-day platform health, monitoring impact of launches, outages, or campaigns, creating weekly/monthly headline metrics at a high level,
+      spotting anomalies (sudden drops or spikes in usage or satisfaction)
